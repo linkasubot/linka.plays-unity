@@ -21,16 +21,15 @@ public class LINKaGazeCamera : MonoBehaviour
     {
         var point = TobiiAPI.GetGazePoint();
 
-//        Debug.Log(point.Screen);
         if (point.IsValid)
         {
             RaycastHit hit;
-            var worldPoint = Camera.main.ScreenToWorldPoint(point.Screen               );
 
             var ray = Camera.main.ScreenPointToRay(point.Screen);
             var raycast = Physics.Raycast(ray, out hit);
             if (raycast)
             {
+		Debug.Log(hit.collider);
                var aware = hit.collider.gameObject.GetComponent<LINKaGazeAware>();
                 if (aware)
                 {
